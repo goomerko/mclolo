@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,16 +27,36 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'mysql2'
+gem 'haml'
+gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
+gem "therubyracer"
+gem "less-rails"
 gem 'twitter-bootstrap-rails', github: "seyhunak/twitter-bootstrap-rails", branch: 'bootstrap3'
+
 gem 'devise'
+gem 'devise-i18n', github: 'tigrish/devise-i18n'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
+
+
+group :test do
+  gem 'spin'
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
+  gem 'delorean'
+  gem 'simplecov', require: false
+  gem 'simplecov-rcov', require: false, github: "wandenberg/simplecov-rcov"
+  gem 'factory_girl_rails'
+end
