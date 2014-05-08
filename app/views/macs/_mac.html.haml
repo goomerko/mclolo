@@ -1,0 +1,8 @@
+%tr{class: cycle('even', 'odd')}
+  %td= mac.comment
+  - if current_user.admin?
+    %td= mac.user.email
+  %td= mac.mac
+  %td
+    = link_to 'editar', [:edit, mac], class: 'btn btn-primary btn-xs pull-right'
+    = link_to "borrar", [mac], method: 'delete', class: 'pull-right btn btn-danger btn-xs', "data-confirm" => '¿Estás seguro?'

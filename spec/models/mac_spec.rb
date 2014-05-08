@@ -14,4 +14,13 @@ describe Mac do
   describe "relations" do
     it { should belong_to(:user) }
   end
+
+  describe "convert_scores" do
+    it "should replace the - in the mac" do
+      mac = Mac.new(mac: 'XX-XX-XX-XX-XX-XX')
+      mac.save
+      mac.mac.should == 'XX:XX:XX:XX:XX:XX'
+    end
+
+  end
 end

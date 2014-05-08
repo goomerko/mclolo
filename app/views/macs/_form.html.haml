@@ -1,0 +1,12 @@
+.well
+  = semantic_form_for @mac do |f|
+    .row
+      .col-md-12
+        = f.input :mac
+    .row
+      .col-md-12
+        = f.input :comment, label: 'Comentario'
+    .row
+      .col-md-12
+        = f.submit "Crear", class: 'btn btn-success pull-right'
+        = link_to "Cancelar", [:macs], class: 'btn pull-right'

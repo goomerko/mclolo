@@ -1,1 +1,18 @@
-It works!!
+
+.row
+  .col-lg-12
+    = link_to "Nueva mac", [:new, :mac], class: 'pull-right btn btn-success'
+- if @macs.present?
+  %table
+    %thead
+      %th.col-lg-4 Comentario
+      %th.col-lg-4 Mac
+      - if current_user.admin?
+        %th Usuario
+      %th.col-lg-4 Opciones
+    %tbody
+      = render @macs
+  = will_paginate @macs
+- else
+  No hay ninguna mac dada de alta
+
