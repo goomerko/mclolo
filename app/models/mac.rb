@@ -6,7 +6,7 @@ class Mac < ActiveRecord::Base
   before_validation :convert_scores
 
   def convert_scores
-    self.mac = self.mac.gsub('-', ':')
+    self.mac = self.mac.gsub('-', ':') if self.mac.present?
   end
 
   def self.valid_params(params)

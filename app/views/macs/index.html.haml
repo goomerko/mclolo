@@ -1,15 +1,22 @@
 
 .row
-  .col-lg-12
+  .col-lg-6
+    = form_tag [:macs], method: :get do
+      = text_field_tag "search_term", @search_term
+      = submit_tag "Buscar"
+      = link_to "limpiar", [:macs]
+  .col-lg-6
     = link_to "Nueva mac", [:new, :mac], class: 'pull-right btn btn-success'
+
+
 - if @macs.present?
   %table
     %thead
-      %th.col-lg-4 Comentario
-      %th.col-lg-4 Mac
+      %th Comentario
+      %th Mac
       - if current_user.admin?
         %th Usuario
-      %th.col-lg-4 Opciones
+      %th
     %tbody
       = render @macs
   = will_paginate @macs

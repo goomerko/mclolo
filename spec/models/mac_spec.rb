@@ -6,8 +6,9 @@ describe Mac do
     it { should validate_presence_of(:mac) }
 
     it do
-      FactoryGirl.create(:mac)
-      should validate_uniqueness_of(:mac)
+      mac = FactoryGirl.create(:mac)
+      mac2 = FactoryGirl.build(:mac, mac: mac.mac)
+      mac2.should_not be_valid
     end
   end
 

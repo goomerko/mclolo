@@ -7,6 +7,15 @@ class MacsController < ApplicationController
     else
       @macs = current_user.macs
     end
+
+    # search
+    @search_term = params[:search_term]
+    if @search_term.present?
+      @macs = @macs.includes(:user).where("macs.comment LIKE ? OR macs.mac LIKE ? or users.email LIKE ?",
+       "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
+    end
+
+    # Paginate
     @macs = @macs.paginate(page: params[:page], per_page: 30)
   end
 

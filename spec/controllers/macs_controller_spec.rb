@@ -15,6 +15,8 @@ describe MacsController do
     FactoryGirl.create(:mac, user: @user2)
     FactoryGirl.create(:mac, user: @user2)
     FactoryGirl.create(:mac, user: @user2)
+
+    sign_in @user
   end
 
   describe "regular user" do
@@ -40,6 +42,7 @@ describe MacsController do
 
   describe "admin user" do
     before do
+      sign_out @user
       sign_in @admin
     end
 
@@ -51,5 +54,47 @@ describe MacsController do
       end
     end
   end
+
+  describe "new" do
+    it "should render successfully" do
+      get :new
+      response.should be_success
+    end
+  end
+
+  describe "create" do
+    it "should create a new Mac" do
+      post :create, mac: FactoryGirl.build(:mac).attributes
+      response.should redirect_to(:macs)
+    end
+
+    it "should render new if errors exist" do
+      post :create, mac: {mac: 'asdfasdf'}
+      response.should render_template('new')
+    end
+  end
+
+  describe "edit" do
+    it "should render successfully" do
+      get :edit, id: Mac.first.to_param
+      response.should be_success
+    end
+  end
+
+  describe "update" do
+    it "should update a Mac" do
+      mac = Mac.first
+      new_mac = '11:aa:aa:aa:aa:aa'
+      patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:new_mac})
+      mac.reload.mac.should == new_mac
+    end
+
+    it "should render edit if errors exist" do
+      mac = Mac.first
+      patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:'11:aa:aa:aa'})
+      response.should render_template('edit')
+    end
+  end
+
 
 end
