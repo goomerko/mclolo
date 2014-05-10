@@ -14,7 +14,7 @@ class Mac < ActiveRecord::Base
     self.mac = self.mac.upcase
   end
   def self.valid_params(params)
-    params.permit(:mac, :comment, :node)
+    params.permit(:mac, :comment, :node, :blocked)
   end
 
 end

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'macs#index'
 
   resources :macs
+  resources :exports, only: [] do
+    get :macs, on: :collection
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

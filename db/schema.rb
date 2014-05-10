@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510163728) do
+ActiveRecord::Schema.define(version: 20140510165514) do
 
   create_table "macs", force: true do |t|
     t.string   "mac"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 20140510163728) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.datetime "ping_timestamp"
+    t.string   "header"
+    t.string   "footer"
+    t.string   "iface"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
