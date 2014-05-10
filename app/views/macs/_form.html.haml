@@ -1,7 +1,9 @@
 .well
   = semantic_form_for @mac do |f|
     .row
-      .col-md-12
+      .col-md-6
+        = f.input :node, label: 'Nodo'
+      .col-md-6
         = f.input :mac
     .row
       .col-md-12

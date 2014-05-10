@@ -11,9 +11,8 @@ class MacsController < ApplicationController
     # search
     @search_term = params[:search_term]
     if @search_term.present?
-      @search_term = @search_term.upcase
-      @macs = @macs.includes(:user).where("macs.comment LIKE ? OR macs.mac LIKE ? or users.email LIKE ?",
-       "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
+      @macs = @macs.includes(:user).where("macs.node LIKE ? OR macs.comment LIKE ? OR macs.mac LIKE ? or users.email LIKE ?",
+       "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
     end
 
     # Paginate
