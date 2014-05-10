@@ -22,6 +22,13 @@ describe Mac do
       mac.save
       mac.mac.should == 'XX:XX:XX:XX:XX:XX'
     end
+  end
 
+  describe "convert_to_upcase" do
+    it "should convert to upcase" do
+      mac = Mac.new(mac: "ab:ab:12:ab:12:12")
+      mac.save
+      mac.mac.should == "AB:AB:12:AB:12:12"
+    end
   end
 end

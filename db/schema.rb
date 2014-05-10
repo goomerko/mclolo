@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426075654) do
+ActiveRecord::Schema.define(version: 20140510162726) do
 
   create_table "macs", force: true do |t|
     t.string   "mac"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140426075654) do
     t.boolean  "blocked",    default: false
     t.integer  "user_id"
   end
+
+  add_index "macs", ["mac", "comment"], name: "index_macs_on_mac_and_comment", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
