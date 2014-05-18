@@ -86,7 +86,7 @@ describe MacsController do
       mac = Mac.first
       new_mac = '11:aa:aa:aa:aa:aa'
       patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:new_mac})
-      mac.reload.mac.should == new_mac
+      mac.reload.mac.should == new_mac.upcase
     end
 
     it "should render edit if errors exist" do

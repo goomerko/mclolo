@@ -1,0 +1,15 @@
+.row
+  .col-lg-6
+  .col-lg-6
+    = link_to "Nuevo usuario", [:new, :admin, :user], class: 'pull-right btn btn-success'
+- if @users.present?
+  %table
+    %thead
+      %th Email
+      %th Macs
+      %th Admin?
+      %th Opciones
+    %tbody
+      = render @users
+- else
+  No hay usuarios

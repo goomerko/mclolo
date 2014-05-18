@@ -1,0 +1,24 @@
+.well
+  = semantic_form_for [:admin, @user] do |f|
+    - if f.object.errors.any?
+      = f.semantic_errors *f.object.errors.messages.keys
+
+    .row
+      .col-md-6
+        = f.input :email, label: 'Correo'
+      .col-md-6
+        = f.input :admin
+
+    = f.inputs name: "Campos para iptables" do
+      .row
+        .col-md-6
+          = f.input :header, label: 'Cabecera'
+        .col-md-6
+          = f.input :footer, label: 'Pie'
+      .row
+        .col-md-6
+          = f.input :iface, label: 'Interfaz'
+    .row
+      .col-md-12
+        = f.submit "Aceptar", class: 'btn btn-success pull-right'
+        = link_to "Cancelar", [:admin, :users], class: 'btn pull-right'

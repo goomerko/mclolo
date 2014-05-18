@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     get :macs, on: :collection
   end
 
+  namespace :admin do
+    resources :users
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
