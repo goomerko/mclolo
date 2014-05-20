@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :load_resource, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all.order(:email)
+    @users = User.all
 
     # search
     @search_term = params[:search_term]
@@ -10,8 +10,8 @@ class Admin::UsersController < Admin::BaseController
       @users = @users.where("email LIKE ?", "%#{@search_term}%")
     end
 
-    # paginate
-    @users = @users.paginate(page: params[:page], per_page: 30)
+    # paginate and sort
+    @users = @users.sorted(params[:sort], "email ASC").paginate(page: params[:page], per_page: 30)
   end
 
 

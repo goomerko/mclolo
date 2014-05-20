@@ -48,6 +48,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
+gem 'sorted', github: 'mynameisrufus/sorted'
 
 
 group :test do

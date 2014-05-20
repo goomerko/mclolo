@@ -8,15 +8,18 @@ class MacsController < ApplicationController
       @macs = current_user.macs
     end
 
+
     # search
-    @search_term = params[:search_term]
+    @search_term = params[:search_term] || session[:search_term]
+    session[:search_term] = @search_term
+
     if @search_term.present?
       @macs = @macs.includes(:user).where("macs.node LIKE ? OR macs.comment LIKE ? OR macs.mac LIKE ? or users.email LIKE ?",
        "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
     end
 
-    # Paginate
-    @macs = @macs.paginate(page: params[:page], per_page: 30)
+    # paginate and sort
+    @macs = @macs.includes(:user).sorted(params[:sort], "node ASC").paginate(page: params[:page], per_page: 30).references(:user)
   end
 
   def new

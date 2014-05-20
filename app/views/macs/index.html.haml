@@ -2,8 +2,8 @@
   .col-lg-6
     = form_tag [:macs], method: :get do
       = text_field_tag "search_term", @search_term
-      = submit_tag "Buscar"
-      = link_to "limpiar", [:macs]
+      = submit_tag "Buscar", class: "btn btn-success btn-xs"
+      = link_to "limpiar", polymorphic_path([:macs], search_term: '')
   .col-lg-6
     = link_to "Nueva mac", [:new, :mac], class: 'pull-right btn btn-success'
 
@@ -11,12 +11,12 @@
 - if @macs.present?
   %table
     %thead
-      %th Nodo
-      %th Comentario
-      %th Mac
+      %th= link_to_sorted "Nodo", :node
+      %th= link_to_sorted "Comentario", :comment
+      %th= link_to_sorted "Mac", :mac
       - if current_user.admin?
-        %th Usuario
-      %th Bloqueada
+        %th= link_to_sorted "Usuario", "users.email"
+      %th= link_to_sorted "Bloqueada", :blocked
       %th
     %tbody
       = render @macs

@@ -2,16 +2,16 @@
   .col-lg-6
     = form_tag [:admin, :users], method: :get do
       = text_field_tag :search_term, @search_term
-      = submit_tag "Buscar"
-      = link_to "limpiar", [:admin, :users]
+      = submit_tag "Buscar", class: "btn btn-success btn-xs"
+      = link_to "limpiar", polymorphic_path([:admin, :users], search_term: ' ')
   .col-lg-6
     = link_to "Nuevo usuario", [:new, :admin, :user], class: 'pull-right btn btn-success'
 - if @users.present?
   %table
     %thead
-      %th Email
+      %th= link_to_sorted "Email", :email
       %th Macs
-      %th Admin?
+      %th= link_to_sorted "Admin?", :admin
       %th Opciones
     %tbody
       = render @users

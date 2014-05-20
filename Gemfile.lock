@@ -13,6 +13,12 @@ GIT
       formtastic (>= 2.2)
 
 GIT
+  remote: git://github.com/mynameisrufus/sorted.git
+  revision: 3bcc51a2bc75a16835ea93f7a8007fc5d4694459
+  specs:
+    sorted (1.0.0)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 128f373e151528c9516ea8df32831fc60ac1c35d
   branch: bootstrap3
@@ -243,6 +249,7 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   simplecov-rcov!
+  sorted!
   spin
   spring
   therubyracer
