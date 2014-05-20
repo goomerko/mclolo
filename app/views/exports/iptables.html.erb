@@ -1,5 +1,5 @@
 <%= @header %>
-<% @macs.each do |mac| %> 
-iptables -A FORWARD -o <%= current_user.iface %> --match mac --mac-source <%= mac.mac %> -j ACCEPT #<%= mac.comment %>
+<% @macs.each do |mac| %>
+iptables -A FORWARD -o <%= current_user.iface %> --match mac --mac-source <%= mac.mac %> -j ACCEPT # <%= mac.comment %>
 <% end %>
 <%= @footer %>

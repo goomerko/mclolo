@@ -3,6 +3,15 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @users = User.all.order(:email)
+
+    # search
+    @search_term = params[:search_term]
+    if @search_term.present?
+      @users = @users.where("email LIKE ?", "%#{@search_term}%")
+    end
+
+    # paginate
+    @users = @users.paginate(page: params[:page], per_page: 30)
   end
 
 

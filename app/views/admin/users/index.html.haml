@@ -1,5 +1,9 @@
 .row
   .col-lg-6
+    = form_tag [:admin, :users], method: :get do
+      = text_field_tag :search_term, @search_term
+      = submit_tag "Buscar"
+      = link_to "limpiar", [:admin, :users]
   .col-lg-6
     = link_to "Nuevo usuario", [:new, :admin, :user], class: 'pull-right btn btn-success'
 - if @users.present?
@@ -11,5 +15,6 @@
       %th Opciones
     %tbody
       = render @users
+  = will_paginate @users
 - else
   No hay usuarios
