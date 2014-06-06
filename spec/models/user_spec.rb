@@ -7,5 +7,6 @@ describe User do
 
   describe "relations" do
     it { should have_many(:macs) }
+    it { should belong_to :node }
   end
 end

@@ -1,0 +1,16 @@
+.row
+  .col-lg-6
+
+  .col-lg-6
+    = link_to "Nuevo nodo", [:new, :admin, :node], class: 'pull-right btn btn-success'
+
+- if @nodes.present?
+  %table
+    %thead
+      %th Nombre
+      %th Opciones
+    %tbody
+      = render @nodes
+
+- else
+  No hay nodos

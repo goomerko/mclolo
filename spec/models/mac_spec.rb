@@ -14,6 +14,7 @@ describe Mac do
 
   describe "relations" do
     it { should belong_to(:user) }
+    it { should belong_to :node }
   end
 
   describe "convert_scores" do

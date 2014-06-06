@@ -1,7 +1,6 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-
 set :repo_url, 'git@git.fourmach.com:mclolo_new.git'
 
 # Default branch is :master

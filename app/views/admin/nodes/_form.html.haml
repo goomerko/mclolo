@@ -1,0 +1,11 @@
+.well
+  = semantic_form_for [:admin, @node] do |f|
+    - if f.object.errors.any?
+      = f.semantic_errors *f.object.errors.messages.keys
+    .row
+      .col-md-6
+        = f.input :name
+    .row
+      .col-md-12
+        = f.submit "Aceptar", class: 'btn btn-success pull-right'
+        = link_to "Cancelar", [:admin, :nodes], class: 'btn pull-right'

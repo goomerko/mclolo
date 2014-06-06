@@ -1,0 +1,5 @@
+%tr{class: cycle('even', 'odd')}
+  %td= node.name
+  %td
+    = link_to 'editar', [:edit, :admin, node], class: 'btn btn-primary btn-xs pull-right'
+    = link_to "borrar", [:admin, node], method: 'delete', class: 'pull-right btn btn-danger btn-xs', "data-confirm" => '¿Estás seguro?'
