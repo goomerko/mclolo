@@ -4,5 +4,5 @@
 $(document).ready ->
   $.mask.definitions['h'] = "[A-Fa-f0-9]";
   $('#mac_mac').mask('hh:hh:hh:hh:hh:hh')
-  $('#mac_node').focus()
+  $('#mac_mac').focus()
   $('#search_term').focus()
