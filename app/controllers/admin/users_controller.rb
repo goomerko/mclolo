@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
 
 
   def create
-    @user = User.new(User.valid_params(params[:user]))
+    @user = User.new(User.valid_params(params))
     @user.password = @user.password_confirmation = 'Gtooz4cNrNb8Ps'
     if @user.save
       flash[:notice] = 'Usuario actualizado correctamente'
@@ -38,7 +38,7 @@ class Admin::UsersController < Admin::BaseController
 
 
   def update
-    if @user.update_attributes(User.valid_params(params[:user]))
+    if @user.update_attributes(User.valid_params(params))
       flash[:notice] = 'Usuario actualizado correctamente'
       redirect_to [:admin, :users]
     else
@@ -49,6 +49,8 @@ class Admin::UsersController < Admin::BaseController
 
 
   def destroy
+    @user.destroy
+    redirect_to [:admin, :users]
   end
 
   private

@@ -7,9 +7,16 @@
       .col-md-6
         = f.input :email, label: 'Correo'
       .col-md-6
-        = f.input :admin
+        = f.input :admin, label: 'Administrador'
+        = f.input :manager, label: 'Gestor'
+        = f.input :node, label: 'Tipo nodo'
 
-    = f.inputs name: "Campos para iptables" do
+    .row
+      .col-md-6
+        = f.input :nodes, as: :check_boxes, label: 'Nodos'
+        = link_to "seleccionar todos los nodos", '#', id: :select_all_nodes
+
+    = f.inputs name: "Campos para los tipo nodo" do
       .row
         .col-md-6
           = f.input :header, label: 'Cabecera'

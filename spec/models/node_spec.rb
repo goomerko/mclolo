@@ -6,7 +6,6 @@ describe Node do
   end
 
   describe 'relations' do
-    it { should have_many :users }
-    it { should have_many :macs }
+    it { should have_and_belong_to_many :users }
   end
 end
