@@ -1,11 +1,17 @@
 .row
   .col-lg-6
     = form_tag [:admin, :users], method: :get do
+      - if @node.present?
+        = hidden_field_tag :node_id, @node.id
       = text_field_tag :search_term, @search_term
-      = submit_tag "Buscar", class: "btn btn-success btn-xs"
-      = link_to "limpiar", polymorphic_path([:admin, :users], search_term: ' ')
+      = submit_tag "Buscar", class: "btn btn-primary btn-xs"
+      = link_to "Limpiar búsqueda", polymorphic_path([:admin, :users], search_term: ' '), class: "btn btn-xs btn-danger"
   .col-lg-6
     = link_to "Nuevo usuario", [:new, :admin, :user], class: 'pull-right btn btn-success'
+- if @node.present?
+  %h5= "Mostrando los usuarios del nodo <strong>#{@node.name}</strong>:".html_safe
+- else
+  %h5 Mostrando todos los usuarios:
 - if @users.present?
   %table
     %thead

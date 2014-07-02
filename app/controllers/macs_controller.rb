@@ -10,7 +10,7 @@ class MacsController < ApplicationController
 
     if @search_term.present?
       @macs = @macs.includes(:user).where("macs.comment LIKE ? OR macs.mac LIKE ? or users.email LIKE ?",
-       "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
+       "%#{@search_term}%", "%#{@search_term}%", "%#{@search_term}%").references(:user)
     end
 
     # paginate and sort

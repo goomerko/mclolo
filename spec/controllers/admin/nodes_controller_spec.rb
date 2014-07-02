@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Admin::NodesController do
+  render_views
+
   before do
     @node = FactoryGirl.create(:node)
     @user = FactoryGirl.create(:admin_user)

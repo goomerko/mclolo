@@ -10,6 +10,10 @@ describe Admin::UsersController do
 
     @user = FactoryGirl.create(:admin_user)
     sign_in @user
+
+    @user1 = FactoryGirl.create(:user, nodes: [@node1])
+    @user2 = FactoryGirl.create(:user, nodes: [@node1, @node2])
+    @user3 = FactoryGirl.create(:user, nodes: [@node2])
   end
 
 
@@ -19,17 +23,23 @@ describe Admin::UsersController do
       response.should be_success
     end
 
-    it "should load all the nodes" do
-      get :new
-      assigns[:available_nodes].count.should == 3
+    it "should show only the users in a node" do
+      get :index, node_id: @node1
+      assigns[:users].should include(@user1)
+      assigns[:users].should include(@user2)
+      assigns[:users].should_not include(@user3)
     end
   end
-
 
   describe "new" do
     it "should render successfully" do
       get :new
       response.should be_success
+    end
+
+    it "should load all the nodes" do
+      get :new
+      assigns[:available_nodes].count.should == 3
     end
   end
 

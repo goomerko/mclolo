@@ -11,6 +11,12 @@ class Admin::UsersController < Admin::BaseController
       @users = current_user.children
     end
 
+    # nodes filter
+    if params[:node_id]
+      @users = @users.includes(:nodes).where("nodes_users.node_id = ?", params[:node_id]).references(:nodes)
+      @node = Node.find(params[:node_id])
+    end
+
     # search
     @search_term = params[:search_term]
     if @search_term.present?
