@@ -2,11 +2,7 @@ class MacsController < ApplicationController
   before_action :load_resource, only: [:edit, :update, :destroy]
 
   def index
-    if current_user.admin?
-      @macs = Mac.all
-    else
-      @macs = current_user.macs
-    end
+    @macs = current_user.available_macs
 
     # search
     @search_term = params[:search_term] || session[:search_term]
@@ -54,10 +50,6 @@ class MacsController < ApplicationController
 
   private
     def load_resource
-      if current_user.admin?
-        @mac = Mac.find(params[:id])
-      else
-        @mac = current_user.macs.find(params[:id])
-      end
+      @mac = current_user.available_macs.find(params[:id])
     end
 end

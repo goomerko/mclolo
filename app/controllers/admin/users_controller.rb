@@ -1,8 +1,15 @@
 class Admin::UsersController < Admin::BaseController
+  skip_before_action :authenticate_admin!
+  before_action :authenticate_manager!
   before_action :load_resource, only: [:edit, :update, :destroy]
+  before_action :load_nodes, only: [:new, :create, :edit, :update]
 
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      @users = current_user.children
+    end
 
     # search
     @search_term = params[:search_term]
@@ -21,8 +28,9 @@ class Admin::UsersController < Admin::BaseController
 
 
   def create
-    @user = User.new(User.valid_params(params))
+    @user = User.new(User.valid_params(params, current_user))
     @user.password = @user.password_confirmation = 'Gtooz4cNrNb8Ps'
+    @user.parent = current_user
     if @user.save
       flash[:notice] = 'Usuario actualizado correctamente'
       redirect_to [:admin, :users]
@@ -38,7 +46,7 @@ class Admin::UsersController < Admin::BaseController
 
 
   def update
-    if @user.update_attributes(User.valid_params(params))
+    if @user.update_attributes(User.valid_params(params, current_user))
       flash[:notice] = 'Usuario actualizado correctamente'
       redirect_to [:admin, :users]
     else
@@ -56,5 +64,13 @@ class Admin::UsersController < Admin::BaseController
   private
     def load_resource
       @user = User.find(params[:id])
+    end
+
+    def load_nodes
+      if current_user.admin?
+        @available_nodes = Node.all.order(:name)
+      else
+        @available_nodes = current_user.nodes.order(:name)
+      end
     end
 end

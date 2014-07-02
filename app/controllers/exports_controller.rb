@@ -1,7 +1,7 @@
 class ExportsController < ApplicationController
   layout false
   def macs
-    @macs = Mac.where(blocked:false)
+    @macs = Mac.includes({user: :nodes}).where("nodes_users.node_id in (?)", current_user.nodes.map(&:id)).where('macs.blocked = false AND users.blocked = false').references(:nodes_users)
 
     text = @macs.collect { |m| "#{m.mac} ##{m.comment}" }.join("\n")
     text << "\n"

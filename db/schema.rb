@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606075804) do
+ActiveRecord::Schema.define(version: 20140702065814) do
 
   create_table "macs", force: true do |t|
     t.string   "mac"
@@ -63,9 +63,12 @@ ActiveRecord::Schema.define(version: 20140606075804) do
     t.integer  "node_id"
     t.boolean  "manager"
     t.boolean  "node"
+    t.integer  "parent_id"
+    t.boolean  "blocked",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["parent_id"], name: "index_users_on_parent_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

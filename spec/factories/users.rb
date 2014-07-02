@@ -9,6 +9,14 @@ FactoryGirl.define do
       admin true
     end
 
+    factory :manager_user do
+      manager true
+    end
+
+    factory :node_user do
+      node true
+    end
+
     factory :user_invalid do
       email ''
     end

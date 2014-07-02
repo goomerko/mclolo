@@ -96,5 +96,31 @@ describe MacsController do
     end
   end
 
+  context "for a manager user" do
+    before do
+      @manager = FactoryGirl.create(:manager_user)
+      @child1 = FactoryGirl.create(:user, parent: @manager)
+      @user = FactoryGirl.create(:user)
+
+      # Algunas macs
+      FactoryGirl.create(:mac, user: @manager)
+      FactoryGirl.create(:mac, user: @manager)
+      FactoryGirl.create(:mac, user: @child1)
+      FactoryGirl.create(:mac, user: @child1)
+      FactoryGirl.create(:mac, user: @user)
+      FactoryGirl.create(:mac, user: @user)
+
+      sign_in @manager
+    end
+
+    describe "index" do
+      it "should show all the children's macs" do
+        get :index
+        macs = assigns[:macs]
+        macs.count.should == 4
+      end
+    end
+  end
+
 
 end
