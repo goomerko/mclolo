@@ -17,7 +17,8 @@
     %thead
       %th= link_to_sorted "Email", :email
       %th Macs
-      %th= link_to_sorted "Admin?", :admin
+      %th= link_to_sorted "Admin", :admin
+      %th= link_to_sorted "Bloqueado", :blocked
       %th Opciones
     %tbody
       = render @users

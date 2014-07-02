@@ -1,7 +1,8 @@
 %tr{class: cycle('even', 'odd')}
   %td= user.email
   %td= link_to "#{user.macs.count} macs", polymorphic_path(:macs, search_term: user.email), target: :blank
-  %td= admin_text(user)
+  %td.center= yes_no_text(user.admin?)
+  %td.center= yes_no_text(user.blocked)
   %td
     = link_to 'editar', [:edit, :admin, user], class: 'btn btn-primary btn-xs pull-right'
     = link_to "borrar", [:admin, user], method: 'delete', class: 'pull-right btn btn-danger btn-xs', "data-confirm" => '¿Estás seguro?'

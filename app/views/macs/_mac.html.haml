@@ -7,7 +7,7 @@
         = mac.user.email
       - else
         \-
-  %td= mac.blocked ? "Sí" : "No"
+  %td.center= mac.blocked ? "Sí" : "No"
   %td
     = link_to 'editar', [:edit, mac], class: 'btn btn-primary btn-xs pull-right'
     = link_to "borrar", [mac], method: 'delete', class: 'pull-right btn btn-danger btn-xs', "data-confirm" => '¿Estás seguro?'

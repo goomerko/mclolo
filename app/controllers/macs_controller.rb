@@ -14,7 +14,7 @@ class MacsController < ApplicationController
     end
 
     # paginate and sort
-    @macs = @macs.includes(:user).sorted(params[:sort]).paginate(page: params[:page], per_page: 30).references(:user)
+    @macs = @macs.includes(:user).sorted(params[:sort]).paginate(page: params[:page], per_page: 20).references(:user)
   end
 
   def new

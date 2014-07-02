@@ -24,7 +24,7 @@ class Admin::UsersController < Admin::BaseController
     end
 
     # paginate and sort
-    @users = @users.sorted(params[:sort], "email ASC").paginate(page: params[:page], per_page: 30)
+    @users = @users.sorted(params[:sort], "email ASC").paginate(page: params[:page], per_page: 20)
   end
 
 
