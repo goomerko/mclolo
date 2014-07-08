@@ -76,8 +76,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'localhost',
-    port:                 587,
+    port:                 25,
     domain:               'mclolo.2hw.es',
+    openssl_verify_mode: 'none',
     enable_starttls_auto: true  }
 
   # Disable automatic flushing of the log to improve performance.

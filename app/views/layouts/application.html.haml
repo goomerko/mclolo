@@ -51,7 +51,7 @@
         .col-lg-9
           = bootstrap_flash
           -# Mensaje de bloqueo
-          - if current_user.blocked
+          - if current_user && current_user.blocked
             .alert.alert-danger
               Has sido bloqueado. Puedes administrar tus macs, pero tendrán el acceso bloqueado.
           .well
