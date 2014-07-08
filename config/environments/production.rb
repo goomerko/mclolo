@@ -68,9 +68,17 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
+  Rails.application.routes.default_url_options[:host] = 'mclolo.2hw.es'
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'localhost',
+    port:                 587,
+    domain:               'mclolo.2hw.es',
+    enable_starttls_auto: true  }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
