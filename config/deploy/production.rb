@@ -3,13 +3,7 @@
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
-
-role :app, %w{deployer@tunguska.219innova24h.es}
-role :web, %w{deployer@tunguska.219innova24h.es}
-role :db,  %w{deployer@tunguska.219innova24h.es}
-
-set :application, 'mclolo'
-set :deploy_to, '/home/deployer/apps/mclolo'
+set :stage, :production
 
 # Extended Server Syntax
 # ======================
@@ -17,7 +11,7 @@ set :deploy_to, '/home/deployer/apps/mclolo'
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server 'tunguska.219innova24h.es', user: 'deployer', roles: %w{web app}
 
 
 # Custom SSH Options
