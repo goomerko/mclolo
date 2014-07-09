@@ -47,6 +47,7 @@ gem 'twitter-bootstrap-rails', github: "seyhunak/twitter-bootstrap-rails", branc
 
 gem 'devise'
 gem 'devise-i18n', github: 'tigrish/devise-i18n'
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'formtastic', github: 'justinfrench/formtastic'
