@@ -23,7 +23,7 @@ class MacsController < ApplicationController
 
 
   def create
-    @mac = Mac.new(Mac.valid_params(params[:mac]))
+    @mac = Mac.new(Mac.valid_params(params[:mac], current_user))
     @mac.user = current_user
     if @mac.save
       redirect_to [:macs]
@@ -36,7 +36,7 @@ class MacsController < ApplicationController
   end
 
   def update
-    if @mac.update_attributes(Mac.valid_params(params[:mac]))
+    if @mac.update_attributes(Mac.valid_params(params[:mac], current_user))
       redirect_to :macs
     else
       render 'edit'

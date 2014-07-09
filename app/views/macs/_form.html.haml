@@ -8,6 +8,10 @@
         = f.input :comment, label: 'Comentario'
       .col-md-2
         = f.input :blocked, label: 'Bloquear'
+    - if current_user.admin?
+      .row
+        .col-md-12
+          = f.input :user, input_html: {class: 'select2'}
     .row
       .col-md-12
         = f.submit "Aceptar", class: 'btn btn-success pull-right'

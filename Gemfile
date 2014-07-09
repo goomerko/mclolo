@@ -52,6 +52,7 @@ gem 'will_paginate-bootstrap'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'sorted', github: 'mynameisrufus/sorted'
+gem 'select2-rails'
 
 
 group :test do

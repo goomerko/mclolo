@@ -53,6 +53,15 @@ describe MacsController do
         assigns(:macs).count.should == 6
       end
     end
+
+    describe "update" do
+      it "should update the Mac's user" do
+        other_user = FactoryGirl.create(:user)
+        mac = Mac.first
+        patch :update, id: mac.to_param, mac: mac.attributes.merge({user_id: other_user.id})
+        mac.reload.user.should == other_user
+      end
+    end
   end
 
   describe "new" do
@@ -93,6 +102,13 @@ describe MacsController do
       mac = Mac.first
       patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:'11:aa:aa:aa'})
       response.should render_template('edit')
+    end
+
+    it "should not update the Mac's user" do
+      other_user = FactoryGirl.create(:user)
+      mac = Mac.first
+      patch :update, id: mac.to_param, mac: mac.attributes.merge({user_id: other_user.id})
+      mac.reload.user.should_not == other_user
     end
   end
 

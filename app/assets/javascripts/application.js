@@ -16,4 +16,5 @@
 //= require jquery.maskedinput
 //= require twitter/bootstrap
 //= require turbolinks
+//= require select2
 //= require_tree .

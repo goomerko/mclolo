@@ -15,8 +15,13 @@ class Mac < ActiveRecord::Base
   def convert_to_upcase
     self.mac = self.mac.upcase if self.mac.present?
   end
-  def self.valid_params(params)
-    params.permit(:mac, :comment, :node, :blocked)
+
+  def self.valid_params(params, current_user)
+    if current_user.admin?
+      params.permit(:mac, :comment, :node, :blocked, :user_id)
+    else
+      params.permit(:mac, :comment, :node, :blocked)
+    end
   end
 
 end

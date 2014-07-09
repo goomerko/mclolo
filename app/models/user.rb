@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     self.send_reset_password_instructions
   end
 
+  def name
+    email
+  end
+
   def available_macs
     if self.admin?
       Mac.all
