@@ -89,6 +89,12 @@ describe Admin::UsersController do
         response.should render_template('edit')
         @user.reload.email.should == old_email
       end
+
+      it "should change the user's parent" do
+        new_parent = FactoryGirl.create(:user)
+        patch :update, id: @user.id, user: {parent_id: new_parent.id}
+        @user.reload.parent.should == new_parent
+      end
     end
 
     describe "destroy" do
@@ -193,6 +199,12 @@ describe Admin::UsersController do
           response.should be_success
           response.should render_template('edit')
           @created_user.reload.email.should == old_email
+        end
+
+        it "should not change the user's parent" do
+          new_parent = FactoryGirl.create(:user)
+          patch :update, id: @user.id, user: {parent_id: new_parent.id}
+          @user.reload.parent.should_not == new_parent
         end
       end
 

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   def self.valid_params(params, current_user)
     if current_user.admin?
-      params.require(:user).permit(:email, :blocked, :header, :footer, :iface, :admin, :manager, :node, node_ids: [])
+      params.require(:user).permit(:email, :blocked, :header, :footer, :iface, :parent_id, :admin, :manager, :node, node_ids: [])
     elsif current_user.manager?
       params.require(:user).permit(:email, :blocked, :manager, node_ids: [])
     end
