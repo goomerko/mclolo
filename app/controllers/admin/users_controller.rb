@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :authenticate_manager!
   before_action :load_resource, only: [:edit, :update, :destroy]
   before_action :load_nodes, only: [:new, :create, :edit, :update]
+  before_action :filter_blank_password, only: [:create, :update]
 
   def index
     if current_user.admin?
@@ -52,6 +53,7 @@ class Admin::UsersController < Admin::BaseController
 
 
   def update
+    p "@@@@@@@@@@@@@@@@@@@@@ params.inspect  #{params.inspect}"
     if @user.update_attributes(User.valid_params(params, current_user))
       flash[:notice] = 'Usuario actualizado correctamente'
       redirect_to [:admin, :users]

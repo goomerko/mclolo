@@ -24,6 +24,11 @@
       .row
         .col-md-6
           = f.input :parent, input_html: {class: 'select2'}, label: 'Usuario gestor'
+      .row
+        .col-md-6
+          = f.input :password, label: 'Nueva contraseña'
+        .col-md-6
+          = f.input :password_confirmation, label: 'Repite la clave'
       = f.inputs name: "Campos para los tipo nodo" do
         .row
           .col-md-6

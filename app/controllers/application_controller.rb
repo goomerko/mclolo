@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
     def record_not_found
       render text: "404 Not found", status: 404
     end
+
+    def filter_blank_password
+      if params[:user][:password].blank?
+        params[:user].delete :password
+        params[:user].delete :password_confirmation
+        p "@@@@@@@@@@@@@@ params.inspect  #{params.inspect}"
+        p "@@@@@@@@@@@@@@ blank password"
+      end
+    end
 end
