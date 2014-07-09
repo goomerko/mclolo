@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
       if params[:user][:password].blank?
         params[:user].delete :password
         params[:user].delete :password_confirmation
-        p "@@@@@@@@@@@@@@ params.inspect  #{params.inspect}"
-        p "@@@@@@@@@@@@@@ blank password"
       end
     end
+
 end
