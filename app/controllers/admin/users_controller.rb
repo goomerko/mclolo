@@ -36,7 +36,11 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(User.valid_params(params, current_user))
-    @user.password = @user.password_confirmation = 'Gtooz4cNrNb8Ps'
+
+    if @user.password.blank?
+      @user.password = @user.password_confirmation = 'Gtooz4cNrNb8Ps'
+    end
+
     @user.parent = current_user
     if @user.save
       flash[:notice] = 'Usuario actualizado correctamente'
