@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :macs
+  has_many :macs, dependent: :destroy
   has_and_belongs_to_many :nodes
 
   has_many :children, class_name: "User", foreign_key: :parent_id
   belongs_to :parent, class_name: "User"
 
   after_create :send_admin_mail
+
+  default_scope {order(:email)}
 
   def self.valid_params(params, current_user)
     if current_user.admin?

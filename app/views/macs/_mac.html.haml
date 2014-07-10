@@ -1,5 +1,6 @@
 %tr{class: cycle('even', 'odd')}
-  %td= mac.comment
+  %td
+    %small= mac.comment
   %td= mac.mac
   - if current_user.admin?
     %td
