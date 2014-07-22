@@ -32,6 +32,7 @@ gem 'unicorn'
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.1'
 gem 'capistrano-rails'
+gem 'capistrano-pending', require: false
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 
