@@ -79,7 +79,8 @@ Rails.application.configure do
     port:                 25,
     domain:               'mclolo.2hw.es',
     openssl_verify_mode: 'none',
-    enable_starttls_auto: true  }
+    enable_starttls_auto: true
+  }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

@@ -15,8 +15,8 @@ class ExportsController < ApplicationController
       end
 
       format.iptables do
-        @header = current_user.header
-        @footer = current_user.footer
+        @header = current_user.header.delete!("\C-M")
+        @footer = current_user.footer.delete!("\C-M")
 
         render :template => 'exports/iptables.html.erb'
       end
