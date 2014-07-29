@@ -31,4 +31,22 @@ namespace :macs do
       mac.save
     end
   end
+
+  desc "Carga las macs de sanhilario"
+  task load_sanhilario: :environment do
+    f = open("#{Rails.root}/lib/tasks/macs_sanhilario.txt")
+    sanhilario = User.where(email: 'sanhilario@2hw.es').first
+
+    f.read.each_line do |line|
+      split = line.split(';')
+      mac = split[0].strip
+      nodo_str = split[1].downcase.strip
+      comment = split[2].strip
+
+      mac = Mac.new(mac: mac)
+      mac.comment = comment
+      mac.user = sanhilario
+      mac.save
+    end
+  end
 end
