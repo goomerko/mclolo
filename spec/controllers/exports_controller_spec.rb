@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe ExportsController do
   render_views
@@ -24,7 +24,6 @@ describe ExportsController do
 
     sign_in @node_user
   end
-
 
   it "should return the non-blocked macs for my nodes" do
     get :macs, format: :txt

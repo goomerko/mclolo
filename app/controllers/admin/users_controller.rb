@@ -57,7 +57,6 @@ class Admin::UsersController < Admin::BaseController
 
 
   def update
-    p "@@@@@@@@@@@@@@@@@@@@@ params.inspect  #{params.inspect}"
     if @user.update_attributes(User.valid_params(params, current_user))
       flash[:notice] = 'Usuario actualizado correctamente'
       redirect_to [:admin, :users]

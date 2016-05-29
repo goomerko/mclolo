@@ -1,9 +1,9 @@
 module ApplicationHelper
   def yes_no_text(value)
     if value
-      'Sí'
+      "Sí"
     else
-      'No'
+      "No"
     end
   end
 end

@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :node do
-    sequence(:name){|n| "node_#{n}"}
+    sequence(:name) { |n| "node_#{n}" }
 
     factory :node_invalid, class: Node do
-      name ''
+      name ""
     end
   end
 end

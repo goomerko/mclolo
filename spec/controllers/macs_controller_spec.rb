@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe MacsController do
   render_views
@@ -39,7 +39,6 @@ describe MacsController do
     end
   end
 
-
   describe "admin user" do
     before do
       sign_out @user
@@ -58,7 +57,7 @@ describe MacsController do
       it "should update the Mac's user" do
         other_user = FactoryGirl.create(:user)
         mac = Mac.first
-        patch :update, id: mac.to_param, mac: mac.attributes.merge({user_id: other_user.id})
+        patch :update, id: mac.to_param, mac: mac.attributes.merge(user_id: other_user.id)
         mac.reload.user.should == other_user
       end
     end
@@ -78,8 +77,8 @@ describe MacsController do
     end
 
     it "should render new if errors exist" do
-      post :create, mac: {mac: 'asdfasdf'}
-      response.should render_template('new')
+      post :create, mac: { mac: "asdfasdf" }
+      response.should render_template("new")
     end
   end
 
@@ -93,21 +92,21 @@ describe MacsController do
   describe "update" do
     it "should update a Mac" do
       mac = Mac.first
-      new_mac = '11:aa:aa:aa:aa:aa'
-      patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:new_mac})
+      new_mac = "11:aa:aa:aa:aa:aa"
+      patch :update, id: mac.to_param, mac: mac.attributes.merge(mac: new_mac)
       mac.reload.mac.should == new_mac.upcase
     end
 
     it "should render edit if errors exist" do
       mac = Mac.first
-      patch :update, id: mac.to_param, mac: mac.attributes.merge({mac:'11:aa:aa:aa'})
-      response.should render_template('edit')
+      patch :update, id: mac.to_param, mac: mac.attributes.merge(mac: "11:aa:aa:aa")
+      response.should render_template("edit")
     end
 
     it "should not update the Mac's user" do
       other_user = FactoryGirl.create(:user)
       mac = Mac.first
-      patch :update, id: mac.to_param, mac: mac.attributes.merge({user_id: other_user.id})
+      patch :update, id: mac.to_param, mac: mac.attributes.merge(user_id: other_user.id)
       mac.reload.user.should_not == other_user
     end
   end
@@ -137,6 +136,4 @@ describe MacsController do
       end
     end
   end
-
-
 end

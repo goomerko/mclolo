@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Mac do
   describe "validations" do
@@ -19,9 +19,9 @@ describe Mac do
 
   describe "convert_scores" do
     it "should replace the - in the mac" do
-      mac = Mac.new(mac: 'XX-XX-XX-XX-XX-XX')
+      mac = Mac.new(mac: "XX-XX-XX-XX-XX-XX")
       mac.save
-      mac.mac.should == 'XX:XX:XX:XX:XX:XX'
+      mac.mac.should == "XX:XX:XX:XX:XX:XX"
     end
   end
 

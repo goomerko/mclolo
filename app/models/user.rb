@@ -11,18 +11,20 @@ class User < ActiveRecord::Base
 
   after_create :send_admin_mail
 
-  default_scope {order(:email)}
+  default_scope { order(:email) }
 
   def self.valid_params(params, current_user)
     if current_user.admin?
-      params.require(:user).permit(:email, :blocked, :header, :footer, :iface, :parent_id, :admin, :manager, :node, :password, :password_confirmation, node_ids: [])
+      params.require(:user)
+        .permit(:email, :blocked, :header, :footer, :iface, :parent_id, :admin, :manager,
+                :node, :password, :password_confirmation, node_ids: [])
     elsif current_user.manager?
       params.require(:user).permit(:email, :blocked, :manager, node_ids: [])
     end
   end
 
   def send_admin_mail
-    self.send_reset_password_instructions
+    send_reset_password_instructions
   end
 
   def name
@@ -33,9 +35,9 @@ class User < ActiveRecord::Base
     if self.admin?
       Mac.all
     elsif self.manager?
-      Mac.where("user_id in (?)", self.children.map(&:id) << self.id)
+      Mac.where("user_id in (?)", children.map(&:id) << id)
     else
-      self.macs
+      macs
     end
   end
 end
