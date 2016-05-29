@@ -42,7 +42,7 @@ gem "mysql2", "0.3.21"
 gem "haml", "4.0.5"
 gem "jquery-ui-rails", "4.2.1"
 gem "jquery-turbolinks", "2.0.2"
-gem "therubyracer", "0.12.1"
+gem "therubyracer", "0.12.2"
 gem "less-rails", "2.5.0"
 gem "twitter-bootstrap-rails", "3.1.1",
     github: "seyhunak/twitter-bootstrap-rails", branch: "bootstrap3"
