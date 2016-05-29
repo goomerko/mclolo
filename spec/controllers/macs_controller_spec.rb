@@ -51,6 +51,38 @@ describe MacsController do
         response.should be_success
         assigns(:macs).count.should == 6
       end
+
+      describe "search" do
+        before do
+          @admin_user = FactoryGirl.create(:admin_user)
+          @mac1 = FactoryGirl.create(:mac, comment: "mac comment")
+          @mac2 = FactoryGirl.create(:mac, mac: "00:00:00:00:00:01")
+          @mac3 = FactoryGirl.create(:mac, user: FactoryGirl.create(:user, email: "u@u.com"))
+
+          sign_in @admin_user
+        end
+
+        it "should filter by comment" do
+          get :index, search_term: "comment"
+
+          assigns[:macs].count.should == 1
+          assigns[:macs].first.id == @mac1.id
+        end
+
+        it "should filter by mac" do
+          get :index, search_term: "00:01"
+
+          assigns[:macs].count.should == 1
+          assigns[:macs].first.id == @mac2.id
+        end
+
+        it "should filter by user's email" do
+          get :index, search_term: "u.com"
+
+          assigns[:macs].count.should == 1
+          assigns[:macs].first.id == @mac3.id
+        end
+      end
     end
 
     describe "update" do
@@ -108,6 +140,16 @@ describe MacsController do
       mac = Mac.first
       patch :update, id: mac.to_param, mac: mac.attributes.merge(user_id: other_user.id)
       mac.reload.user.should_not == other_user
+    end
+  end
+
+  describe "destroy" do
+    it "should destroy a mac" do
+      previous_mac_counts = @user.macs.count
+
+      delete :destroy, id: @user.macs.first
+
+      @user.macs.count.should == previous_mac_counts - 1
     end
   end
 

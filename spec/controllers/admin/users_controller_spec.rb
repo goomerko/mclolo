@@ -29,6 +29,21 @@ describe Admin::UsersController do
       assigns[:users].should include(@user2)
       assigns[:users].should_not include(@user3)
     end
+
+    describe "search" do
+      before do
+        @user1 = FactoryGirl.create(:user, email: "user1@email.com")
+        @user2 = FactoryGirl.create(:user, email: "user2@email.com")
+        @user3 = FactoryGirl.create(:user, email: "user3@email.com")
+      end
+
+      it "should filter by user's email" do
+        get :index, search_term: "user1"
+
+        assigns[:users].count.should == 1
+        assigns[:users].first.id.should == @user1.id
+      end
+    end
   end
 
   describe "new" do

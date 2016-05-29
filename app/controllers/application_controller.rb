@@ -7,20 +7,13 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate_admin!
-    return if current_user.admin?
-
-    flash[:error] = t(:cant_access, scope: [:application])
-    redirect_to root_path
-  end
-
   def record_not_found
     render text: "404 Not found", status: 404
   end
 
   def filter_blank_password
     return if params[:user][:password].present?
-    
+
     params[:user].delete :password
     params[:user].delete :password_confirmation
   end

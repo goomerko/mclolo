@@ -19,8 +19,8 @@ class ExportsController < ApplicationController
       end
 
       format.iptables do
-        @header = current_user.header.delete!("\C-M").html_safe
-        @footer = current_user.footer.delete!("\C-M").html_safe
+        @header = current_user.header.delete("\C-M").try(:html_safe) if current_user.header.present?
+        @footer = current_user.footer.delete("\C-M").try(:html_safe) if current_user.footer.present?
 
         render template: "exports/iptables.html.erb"
       end

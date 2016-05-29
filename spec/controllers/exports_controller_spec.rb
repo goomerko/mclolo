@@ -27,11 +27,33 @@ describe ExportsController do
 
   it "should return the non-blocked macs for my nodes" do
     get :macs, format: :txt
+
     macs = assigns[:macs]
     macs.should include(@mac1)
     macs.should include(@mac2)
     macs.should_not include(@mac3)
     macs.should_not include(@mac4)
     macs.should_not include(@mac5)
+  end
+
+  it "should return the ip tables format" do
+    get :macs, format: :iptables
+
+    macs = assigns[:macs]
+    macs.should include(@mac1)
+    macs.should include(@mac2)
+    macs.should_not include(@mac3)
+    macs.should_not include(@mac4)
+    macs.should_not include(@mac5)
+  end
+
+  it "should include the user's header and footer" do
+    @node_user.update_attribute(:header, "current_user_header")
+    @node_user.update_attribute(:footer, "current_user_footer")
+
+    get :macs, format: :iptables
+
+    response.body.should include("current_user_header")
+    response.body.should include("current_user_footer")
   end
 end
