@@ -11,7 +11,7 @@ set :stage, :production
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'tunguska.219innova24h.es', user: 'deployer', roles: %w{web app}
+server 'vps278078.ovh.net', user: 'deployer', roles: %w{web app}
 
 
 # Custom SSH Options
